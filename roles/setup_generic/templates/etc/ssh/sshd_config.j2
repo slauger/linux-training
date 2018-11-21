@@ -13,7 +13,7 @@ MaxAuthTries 3
 PasswordAuthentication {{ ssh_password_authentication | default('yes') }}
 PermitEmptyPasswords no
 PermitRootLogin {{ ssh_permit_root_login | default('yes') }}
-PrintMotd yes
+PrintMotd no
 PrintLastLog no
 Subsystem sftp /usr/libexec/openssh/sftp-server
 UsePAM yes
