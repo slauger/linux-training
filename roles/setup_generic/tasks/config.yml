@@ -24,3 +24,10 @@
     mode: 0644
   notify: restart sshd
 
+- name: setup sudoers rules for training user
+  template:
+    src: etc/sudoers.d/99_training.j2
+    dest: /etc/sudoers.d/99_training
+    owner: root
+    group: root
+    mode: 0440
