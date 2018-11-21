@@ -14,7 +14,10 @@ fi
 
 # running on debian
 if [ -x /usr/bin/apt-get ]; then
-  apt-get install -y git ansible
+  echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.debian.org.list
+  apt-get update
+  apt-get install -y git
+  apt-get -t stretch-backports install -y ansible
 fi
 
 cd /root
