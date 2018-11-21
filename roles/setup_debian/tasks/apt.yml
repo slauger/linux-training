@@ -1,0 +1,67 @@
+---
+- name: install apt-transport-https
+  package:
+    name: apt-transport-https
+
+- name: create directory for gpg keys
+  file:
+    state: directory
+    path: /etc/apt/keys
+    owner: root
+    group: root
+    mode: 0755
+
+- name: copy gpg keys to local directory
+  copy:
+    src: "etc/apt/keys/{{ item }}.asc"
+    dest: "/etc/apt/keys/{{ item }}.asc"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - puppet
+    - puppet6
+    - chef
+    - puppetlabs
+    - elasticsearch
+    - docker
+    - cisofy
+    - foreman
+
+- name: import gpg keys to apt
+  shell: "cat /etc/apt/keys/{{ item }}.asc | apt-key add -"
+  with_items:
+    - puppet
+    - chef
+    - puppetlabs
+    - elasticsearch
+    - docker
+    - cisofy
+    - foreman
+
+- name: configure additional repositories
+  template:
+    src: "etc/apt/sources.list.d/{{ item }}.list.j2"
+    dest: "/etc/apt/sources.list.d/{{ item }}.list"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - artifacts.elastic.co
+    - backports.debian.org
+    - deb.theforeman.org
+    - download.docker.com
+    - packages.chef.io
+    - packages.cisofy.com
+    - apt.puppetlabs.com
+
+- name: update apt package database
+  shell: "apt-get update"
+
+- name: configure apt package manager
+  template:
+    src: etc/apt/apt.conf.d/99training.j2
+    dest: /etc/apt/apt.conf.d/99training
+    owner: root
+    group: root
+    mode: 0644

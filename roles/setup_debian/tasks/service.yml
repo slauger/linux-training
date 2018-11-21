@@ -1,0 +1,6 @@
+---
+- name: stop and disable puppet
+  service:
+    name: puppet
+    state: stopped
+    enable: false

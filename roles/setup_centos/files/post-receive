@@ -1,0 +1,3 @@
+#!/bin/bash
+logger "running post-recevie hook"
+cd /root/ansible-training && git pull

@@ -1,0 +1,9 @@
+// keep installation minimalstic
+APT::Install-Recommends 0;
+APT::Install-Suggests 0;
+
+// disable diff packages
+Acquire::PDiffs "false";
+
+// disable translations
+Acquire::Languages "en";

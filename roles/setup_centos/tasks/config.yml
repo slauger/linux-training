@@ -1,0 +1,103 @@
+---
+- name: install epel repository
+  yum:
+    name: epel-release 
+    state: present
+
+- name: install puppet repository
+  yum:
+    name: http://yum.puppetlabs.com/puppet5/puppet-release-el-7.noarch.rpm
+    state: present
+
+- name: upgrade system to recent release
+  shell: "yum upgrade -y"
+
+- name: install required packages
+  yum:
+    name:
+      - git
+      - ansible
+      - etckeeper
+      - fail2ban
+      - certbot
+      - vim
+      - nano
+      - screen
+      - strace
+      - nmap
+      - tcpdump
+      - nload
+      - htop
+      - net-tools
+      - bind-utils
+      - lsof
+      - wget
+      - curl
+      - redhat-lsb-core
+      - dmidecode
+      - yum-utils
+
+- name: install puppet agent
+  yum:
+    name: puppet-agent
+    state: present
+
+- name: install fail2ban
+  yum:
+    name: fail2ban-all
+    state: present
+
+- name: start fail2ban services
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+
+- name: install docker
+  yum:
+    name: docker
+    state: present
+
+- name: start docker services
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: configure ssh daemon for secure access
+  copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+  notify: restart_sshd
+
+# not allowed for the cloud domain...
+#- name: create ssl certificate with certbot
+#  shell: "certbot certonly --standalone --noninteractive --agree-tos -d {{ ansible_fqdn }}"
+
+- name: install testssl.sh
+  shell: "{{ item }}"
+  with_items:
+    - "mkdir -p /opt/testssl"
+    - "wget -O /opt/testssl/etc.tar.gz https://testssl.sh/etc.tar.gz"
+    - "wget -O /opt/testssl/testssl.sh https://testssl.sh/testssl.sh"
+    - "chmod +x /opt/testssl/testssl.sh"
+  ignore_errors: yes
+
+- name: clone some cool github repos
+  shell: "{{ item }}"
+  with_items:
+    - "[ ! -d /opt/ssh-audit ] && git clone https://github.com/arthepsy/ssh-audit.git /opt/ssh-audit"
+  ignore_errors: yes
+
+# - name: create git bare repository
+#  shell: "{{ item }}"
+#  with_items:
+#    - "[ ! -d /opt/ansible-training.git ] && mkdir /opt/ansible-training.git"
+#    - "cd /opt/ansible-training.git && git clone --bare /"
+#  ignore_errors: yes
+
+- name: install post-recevie hook for git
+  copy:
+    src: post-receive
+    dest: /opt/ansible-training.git/hooks/post-receive
+    mode: 0755

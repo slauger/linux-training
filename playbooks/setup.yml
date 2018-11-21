@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+    - include_role:
+        name: setup_debian
+      when: "{{ ansible_os_family }}" == 'Debian'
+
+- hosts: all
+  tasks:
+    - include_role:
+        name: setup_centos
+      when: "{{ ansible_os_family }}" == 'RedHat'
+
+- hosts: all
+  roles:
+    - setup_generic

@@ -1,0 +1,61 @@
+---
+- name: install openssh-server
+  package:
+    name: openssh-server
+
+- name: install open-vm-tools
+  package:
+    name: open-vm-tools
+
+- name: install dependency packages
+  package:
+    name:
+      - ca-certificates
+      - curl
+      - vim
+      - nano
+      - screen
+      - git
+      - lsb-release
+      - wget
+      - curl
+      - openssl
+      - gnupg2
+      - sudo
+      - dbus
+
+- name: install tools packages
+  package:
+    name:
+      - dmidecode
+      - nload
+      - locate
+      - lsof
+      - nmap
+      - tcpdump
+      - net-tools
+      - htop
+      - whois
+      - strace
+      - figlet
+      - sysstat
+      - etckeeper
+      - ntpdate
+      - dnsutils
+      - mtr-tiny
+
+- name: install config management tools
+  package:
+    name:
+      - ansible
+      - puppet-agent
+
+- name: install docker
+  package:
+    name: docker-ce
+
+- name: install security tools
+  package:
+    name:
+      - lynis
+      - testssl.sh
