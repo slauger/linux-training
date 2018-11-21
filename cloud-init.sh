@@ -26,8 +26,6 @@ cd /root
   echo "localhost ansible_connection=local"
 ) > /etc/ansible/hosts
 
-git clone --bare https://github.com/slauger/linux-training.git
-
 # clone training scripts
 cd /root
 git clone https://github.com/slauger/linux-training.git
