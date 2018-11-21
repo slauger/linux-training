@@ -9,14 +9,14 @@ echo
 # running on centos
 if [ -x /usr/bin/yum ]; then
   yum install -y epel-release
-  yum install -y git ansible
+  yum install -y git ansible figlet
 fi
 
 # running on debian
 if [ -x /usr/bin/apt-get ]; then
   echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.debian.org.list
   apt-get update
-  apt-get install -y git
+  apt-get install -y git figlet
   apt-get -t stretch-backports install -y ansible
 fi
 
@@ -33,14 +33,8 @@ cd /root
 git clone https://github.com/slauger/linux-training.git
 
 # run playbook
-cd /root/ansible-training
+cd /root/linux-training
 ansible-playbook playbooks/setup.yml &> /root/ansible-init.log
 
-(
-echo " _             _       _             "
-echo "| |_ _ __ __ _(_)_ __ (_)_ __   __ _ "
-echo "| __| '__/ _` | | '_ \| | '_ \ / _` |"
-echo "| |_| | | (_| | | | | | | | | | (_| |"
-echo " \__|_|  \__,_|_|_| |_|_|_| |_|\__, |"
-echo "                               |___/ "
-) > /etc/motd
+# write motd
+figlet training > /etc/motd
