@@ -3,4 +3,4 @@
   service:
     name: puppet
     state: stopped
-    enable: false
+    enabled: false
