@@ -23,6 +23,7 @@
       - gnupg2
       - sudo
       - dbus
+      - make
 
 - name: install tools packages
   package:
