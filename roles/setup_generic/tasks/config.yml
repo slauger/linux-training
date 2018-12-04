@@ -35,6 +35,12 @@
     creates: /etc/ssh/ssh_host_ed25519_key
   notify: restart sshd
 
+- name: create ecdsa key host (legacy)
+  shell: "ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa"
+  args:
+    creates: /etc/ssh/ssh_host_ecdsa_key
+  notify: restart sshd
+
 - name: configure and secure openssh-server
   template:
     src: etc/ssh/sshd_config.j2

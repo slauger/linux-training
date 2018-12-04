@@ -15,7 +15,12 @@ PermitEmptyPasswords no
 PermitRootLogin {{ ssh_permit_root_login | default('yes') }}
 PrintMotd no
 PrintLastLog no
+{% if ansible_os_family == 'Debian' %}
+Subsystem sftp /usr/lib/openssh/sftp-server
+{% endif %}
+{% if ansible_os_family == 'RedHat' %}
 Subsystem sftp /usr/libexec/openssh/sftp-server
+{% endif %}
 UsePAM yes
 X11Forwarding yes
 UseDNS no

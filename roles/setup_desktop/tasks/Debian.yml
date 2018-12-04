@@ -1,0 +1,10 @@
+- name: install desktop system
+  package:
+    name: task-xfce-desktop
+
+- name: install desktop tools
+  package:
+    name: [firefox-esr, gnome-terminal, gedit, code]
+
+- name: configure systemd to graphical
+  shell: systemctl set-default graphical.target
