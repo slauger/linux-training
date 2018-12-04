@@ -1,0 +1,5 @@
+- name: start and enable openssh
+  package:
+    name: "{{ setup_generic_ssh_service | default('ssh') }}"
+    state: started
+    enabled: true

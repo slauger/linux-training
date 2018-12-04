@@ -23,6 +23,16 @@
     group: root
     mode: 0644
 
+- name: create rsa ssh host key
+  shell: "ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa"
+  args:
+    creates: /etc/ssh/ssh_host_rsa_key
+
+- name: create ed25519 ssh host key
+  shell: "ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519"
+  args:
+    creates: /etc/ssh/ssh_host_ed25519_key
+
 - name: configure and secure openssh-server
   template:
     src: etc/ssh/sshd_config.j2
