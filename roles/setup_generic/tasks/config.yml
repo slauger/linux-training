@@ -27,11 +27,13 @@
   shell: "ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa"
   args:
     creates: /etc/ssh/ssh_host_rsa_key
+  notify: restart sshd
 
 - name: create ed25519 ssh host key
   shell: "ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519"
   args:
     creates: /etc/ssh/ssh_host_ed25519_key
+  notify: restart sshd
 
 - name: configure and secure openssh-server
   template:
