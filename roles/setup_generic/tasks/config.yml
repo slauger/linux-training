@@ -7,6 +7,14 @@
     group: root
     mode: 0644
 
+- name: copy gitconfig for root
+  copy:
+    src: root/gitconfig
+    dest: /root/.gitconfig
+    owner: root
+    group: root
+    mode: 0644
+
 - name: copy authorized_keys file
   copy:
     src: root/.ssh/authorized_keys
