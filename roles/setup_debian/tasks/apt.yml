@@ -41,6 +41,14 @@
     - foreman
     - microsoft
 
+- name: configure base repositories
+  template:
+    src: etc/apt/sources.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+
 - name: configure additional repositories
   template:
     src: "etc/apt/sources.list.d/{{ item }}.list.j2"
