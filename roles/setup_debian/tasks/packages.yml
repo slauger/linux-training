@@ -45,6 +45,7 @@
       - dnsutils
       - mtr-tiny
       - man-db
+      - command-not-found
 
 - name: install config management tools
   package:
