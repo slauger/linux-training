@@ -1,0 +1,16 @@
+# loopback
+auto lo
+iface lo inet loopback
+
+# ens33
+auto ens33
+iface ens33 inet static
+  address 192.168.100.20
+  netmask 255.255.255.255
+  gateway 192.168.100.1
+
+iface ens33 inet6 static
+  address 2a01:fff:fff:1234::2
+  gateway 2a01:fff:fff:1234::1
+  netmask 128
+
