@@ -40,6 +40,7 @@
     - cisofy
     - foreman
     - microsoft
+  changed_when: false
 
 - name: configure base repositories
   template:
@@ -67,7 +68,10 @@
     - packages.microsoft.com
 
 - name: update apt package database
-  shell: "apt-get update"
+  apt:
+    upgrade: no
+    update_cache: yes
+  changed_when: false
 
 - name: configure apt package manager
   template:
