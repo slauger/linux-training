@@ -46,6 +46,12 @@ The repository provides a `cloud-init.sh` script for easy usage with cloud-init 
 curl https://raw.githubusercontent.com/slauger/linux-training/master/cloud-init.sh | bash
 ```
 
+## Development environment
+
+- https://code.visualstudio.com
+- https://atom.io
+- https://www.jetbrains.com/idea/
+
 ## Author
 
-- [slauger]
+- [slauger](https://github.com/slauger)
