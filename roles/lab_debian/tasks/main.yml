@@ -9,4 +9,5 @@
   when: offline_mode
 - include_tasks: interfaces.yml
   when: offline_mode
-
+- include_tasks: disk.yml
+  when: disk_mode
