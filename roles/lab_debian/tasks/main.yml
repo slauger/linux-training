@@ -1,0 +1,12 @@
+---
+- include_tasks: essentials.yml
+- include_tasks: date.yml
+- include_tasks: profile.yml
+- include_tasks: docker.yml
+- include_tasks: puppet.yml
+- include_tasks: webserver.yml
+- include_tasks: ssh.yml
+  when: offline_mode
+- include_tasks: interfaces.yml
+  when: offline_mode
+

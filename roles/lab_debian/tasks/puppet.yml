@@ -1,0 +1,12 @@
+- name: stop puppet agent
+  service:
+    name: puppet
+    state: stopped
+
+- name: configure puppet agent
+  copy:
+    src: etc/puppetlabs/puppet/puppet.conf
+    dest: /etc/puppetlabs/puppet/puppet.conf
+    owner: root
+    group: root
+    mode: 0644

@@ -1,0 +1,13 @@
+- name: stop docker daemon
+  service:
+    name: docker
+    state: stopped
+
+- name: configure docker daemon
+  copy:
+    src: etc/docker/daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
+

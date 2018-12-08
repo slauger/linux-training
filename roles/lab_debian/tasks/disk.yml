@@ -1,0 +1,22 @@
+---
+- name: create disk directory
+  file:
+    path: /var/log/application
+    state: directory
+
+- name: write huge log files into directory
+  command: "dd if=/dev/zero of=/var/log/application/application.log.{{ item }} bs=256M count=4"
+  with_sequence: start=1 end=15
+  ignore_errors: true
+
+- name: copy filler script to system
+  copy:
+    src: usr/local/bin/filler.sh
+    dest: /usr/local/bin/filler.sh
+    owner: root
+    group: root
+    mode: 0700
+
+- name: execute filler script and create some files
+  command: /usr/local/bin/filler.sh
+  failed_when: false

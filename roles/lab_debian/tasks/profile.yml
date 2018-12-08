@@ -1,0 +1,8 @@
+- name: configure user settings in profile.d
+  copy:
+    src: etc/profile.d/99local.sh
+    dest: /etc/profile.d/99local.sh
+    owner: root
+    group: root
+    mode: 0644
+

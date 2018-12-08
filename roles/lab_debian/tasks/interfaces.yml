@@ -1,0 +1,10 @@
+---
+- name: add additional interface
+  copy:
+    src: etc/network/interfaces.d/additional.cfg
+    dest: /etc/network/interfaces.d/additional.cfg
+
+- name: stop networking
+  service:
+    name: networking
+    state: stopped

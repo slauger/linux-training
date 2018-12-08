@@ -1,0 +1,13 @@
+- name: configure ssh daemon
+  copy:
+    src: etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: stop sshd daemon
+  service:
+    name: ssh
+    state: stopped
+

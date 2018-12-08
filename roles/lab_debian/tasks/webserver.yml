@@ -1,0 +1,43 @@
+---
+- name: install apache webserver
+  package:
+    name: apache2
+  ignore_errors: true
+
+- name: stop apache webserver
+  service:
+    name: apache2
+    state: stopped
+
+- name: install nginx webserver
+  package:
+    name: nginx
+  ignore_errors: true
+
+- name: configure default site for nginx
+  copy:
+    src: etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-available/default
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: remove apache directories
+  file:
+    path: /var/log/apache2
+    state: absent
+
+- name: configure index.html
+  copy:
+    src: var/www/html/index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0600
+
+- name: break dependencies
+  command: dpkg -r --force-depends apache2-data
+  ignore_errors: true
+

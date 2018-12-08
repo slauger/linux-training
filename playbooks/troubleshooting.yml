@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - include_role:
+        name: lab_debian
+      when: ansible_os_family == 'Debian'
+
+- hosts: all
+  tasks:
+    - include_role:
+        name: lab_centos
+      when: ansible_os_family == 'RedHat'

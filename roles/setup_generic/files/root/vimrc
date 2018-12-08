@@ -1,0 +1,14 @@
+filetype plugin indent on
+syntax on
+set expandtab
+set tabstop=2
+set noautoindent
+set laststatus=2
+set mouse-=ai
+
+set nocindent
+set nosmartindent
+set noautoindent
+set indentexpr=
+filetype indent off
+filetype plugin indent off

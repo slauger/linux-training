@@ -1,0 +1,22 @@
+---
+- name: configure time zone
+  command: timedatectl set-timezone CET
+
+- name: configure rtc in local time
+  command: timedatectl set-local-rtc 1
+
+- name: disable ntp synchronisation
+  command: timedatectl set-ntp 0
+
+- name: configure ntp servers for systemd-timesyncd
+  copy:
+    src: etc/systemd/timesyncd.conf
+    dest: /etc/systemd/timesyncd.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: restart systemd-timesyncd
+  service:
+    name: systemd-timesyncd
+    state: restarted

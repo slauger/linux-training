@@ -57,3 +57,12 @@
     owner: root
     group: root
     mode: 0440
+
+- name: configure vimrc for root
+  copy:
+    src: root/vimrc
+    dest: /root/.vimrc
+    owner: root
+    group: root
+    mode: 0644
+

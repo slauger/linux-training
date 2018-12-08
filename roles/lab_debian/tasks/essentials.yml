@@ -1,0 +1,8 @@
+- name: stop essential services
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  with_items:
+    - cron
+    - rsyslog
