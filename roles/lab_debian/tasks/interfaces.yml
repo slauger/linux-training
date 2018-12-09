@@ -1,8 +1,8 @@
 ---
-- name: add additional interface
+- name: configure network interfaces
   copy:
-    src: etc/network/interfaces.d/additional.cfg
-    dest: /etc/network/interfaces.d/additional.cfg
+    src: etc/network/interfaces
+    dest: /etc/network/interfaces
 
 - name: stop networking
   service:
