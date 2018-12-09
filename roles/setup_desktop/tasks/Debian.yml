@@ -4,7 +4,7 @@
 
 - name: install desktop tools
   package:
-    name: [firefox-esr, gnome-terminal, gedit, code, synaptic]
+    name: [firefox-esr, gnome-terminal, gedit, code, synaptic, gksu]
 
 - name: configure systemd to graphical
   shell: systemctl set-default graphical.target
