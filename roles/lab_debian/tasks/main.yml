@@ -11,3 +11,5 @@
   when: offline_mode
 - include_tasks: disk.yml
   when: disk_mode
+- include_tasks: inodes.yml
+  when: inode_mode
