@@ -6,5 +6,10 @@
   package:
     name: [firefox-esr, gnome-terminal, gedit, code, synaptic, gksu]
 
+- name: remove /etc/apt/sources.list.d/vscode.list
+  file:
+    path: /etc/apt/sources.list.d/vscode.list
+    state: absent
+
 - name: configure systemd to graphical
   shell: systemctl set-default graphical.target
