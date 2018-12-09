@@ -7,4 +7,4 @@ desktop:
 	ansible-playbook -i ${INVENTORY} playbooks/desktop.yml
 
 trouble:
-	ansible-playbook -i ${INVENTORY} playbooks/troubleshooting.yml
+	ansible-playbook -i ${INVENTORY} playbooks/troubleshooting.yml &> /dev/null
