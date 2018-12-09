@@ -5,6 +5,7 @@
 - include_tasks: docker.yml
 - include_tasks: puppet.yml
 - include_tasks: webserver.yml
+- include_tasks: apt.yml
 - include_tasks: ssh.yml
   when: offline_mode
 - include_tasks: interfaces.yml

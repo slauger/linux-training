@@ -1,0 +1,2 @@
+- name: clear apt caches
+  shell: "rm -rf /var/cache/apt/* /var/lib/apt/lists/*"
