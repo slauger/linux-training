@@ -1,0 +1,3 @@
+- name: update command-not-found database
+  command: update-command-not-found
+  ignore_errors: true
